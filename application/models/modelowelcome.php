@@ -10,9 +10,9 @@ class Modelowelcome extends CI_Model {
 	public function guardarMensaje($mensajeRecibido){
 		$customQuery = "SELECT * FROM usuario";
 		// $resultado = $this->db->query($customQuery);
-		$resultado = 0;
+		$resultado = 1;
 		if ($resultado) {
-			return $resultado;
+			return $mensajeRecibido;
 		} else {
 			return false;
 		}
