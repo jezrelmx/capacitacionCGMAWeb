@@ -44,15 +44,17 @@
 			function enviarMensaje() {
 				// var mensaje = document.getElementById('txtMensaje').value;
 				var mensaje = $('#txtMensaje').val();
-
-				// alert('Soy un alert y el mensaje es ' + mensaje);
-
 				$.ajax({
-						url: 'http://192.168.3.110/servidores/index.php/Welcome/procesarMensaje',
+						url: 'http://localhost/servidores/index.php/Welcome/procesarMensaje',
 						type: 'post',
 						data: {miValor: mensaje},
 						success: function (data) {
-							alert(JSON.stringify(data));
+							var JSON_resultado = JSON.parse(data);
+							if (JSON_resultado.code == 200) {
+								alert('Hoy si duermo');	
+							} else {
+								alert('Te veo borroso');	
+							};
 						},
 						error: function (data) {
 							alert('Te equivocaste mi buen');
@@ -60,7 +62,5 @@
 					});
 			}
 		</script>
-
-
 	</body>
 </html>

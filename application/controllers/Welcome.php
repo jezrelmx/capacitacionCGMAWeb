@@ -5,6 +5,7 @@ class Welcome extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		//Do your magic here
+		
 		$this->load->model('modelowelcome');
 	}
 
@@ -30,8 +31,20 @@ class Welcome extends CI_Controller {
 
 	public function procesarMensaje(){
 		$mensajeRecibido = $this->input->post('miValor');
-
-		echo "Mensaje Procesado ".$mensajeRecibido;
-		$this->modelowelcome->guardarMensaje($mensajeRecibido);
+		$resultado = $this->modelowelcome->guardarMensaje($mensajeRecibido);
+		if ($resultado) {
+			$arregloJSON = array(
+			    'code'  => 200,
+			    'message' => 'OK',
+			    'data' => $resultado,
+			);
+		} else {
+			$arregloJSON = array(
+			    'code'  => 599,
+			    'message' => 'NOK',
+			    'data' => $resultado,
+			);
+		}
+		echo json_encode($arregloJSON);
 	}
 }
